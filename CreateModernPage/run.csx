@@ -38,7 +38,7 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 
     log.Info($"Successfully authenticated to site {siteContext.Url}..");
 
-    log.Info($"Will attempt to create page with name {data.PageName}");
+    log.Info($"Will attempt to create page with name {pageName}");
 
     ClientSidePage page = new ClientSidePage(siteContext);
     ClientSideText txt1 = new ClientSideText() { Text = pageText };
