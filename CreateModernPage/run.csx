@@ -13,10 +13,10 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
     log.Info($"C# HTTP trigger function processed a request. RequestUri={req.RequestUri}");
 
     // collect site/page details from request body..
-    dynamic data = await req.Content.ReadAsAsync<object>();
-    string siteUrl = data.SiteUrl;
-    string pageName = data.PageName;
-    string pageText = data.PageText;
+    //dynamic data = await req.Content.ReadAsAsync<object>();
+    string siteUrl =  req.GetQueryNameValuePairs().FirstOrDefault(q => string.Compare(q.Key, "SiteUrl", true) == 0).Value; //data.SiteUrl;
+    string pageName = req.GetQueryNameValuePairs().FirstOrDefault(q => string.Compare(q.Key, "PageName", true) == 0).Value; //data.PageName;
+    string pageText = req.GetQueryNameValuePairs().FirstOrDefault(q => string.Compare(q.Key, "PageText", true) == 0).Value; //data.PageText;
 
     log.Info($"Received siteUrl={siteUrl}, pageName={pageName}, pageText={pageText}");
 
